@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Trail Effect</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="controls">
+        <div class="control-group">
+            <label for="bgColorPicker">Background Color:</label>
+            <div class="color-picker-wrapper">
+                <div class="color-preview">
+                    <input type="color" id="bgColorPicker" value="#000000">
+                </div>
+                <span style="color: white" id="bgColorValue">#000000</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="trailColorPicker">Trail Color:</label>
+            <div class="color-picker-wrapper">
+                <div class="color-preview">
+                    <input type="color" id="trailColorPicker" value="#ffffff">
+                </div>
+                <span style="color: white" id="trailColorValue">#ffffff</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="trailType">Trail Type:</label>
+            <select id="trailType">
+                <option value="solid">Solid Color</option>
+                <option value="rainbow">Rainbow</option>
+                <option value="random">Random</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label class="switch-label">
+                <input type="checkbox" id="neonSwitch">
+                <span class="switch-text">Neon Glow</span>
+            </label>
+        </div>
+        <div class="control-group">
+            <label for="trailLength">Trail Length:</label>
+            <div class="slider-wrapper">
+                <input type="range" id="trailLength" min="10" max="200" value="50">
+                <span id="trailLengthValue" style="color: white">50</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="trailWidth">Trail Width:</label>
+            <div class="slider-wrapper">
+                <input type="range" id="trailWidth" min="1" max="20" value="2">
+                <span id="trailWidthValue" style="color: white">2</span>
+            </div>
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
