@@ -111,9 +111,12 @@ const trailColorValue = document.getElementById('trailColorValue');
 const trailTypeSelect = document.getElementById('trailType');
 const neonSwitch = document.getElementById('neonSwitch');
 
-// Set rainbow as default
+// Set rainbow and neon as defaults
 if (trailTypeSelect) {
     trailTypeSelect.value = 'rainbow';
+}
+if (neonSwitch) {
+    neonSwitch.checked = true;
 }
 
 function resizeCanvas() {
