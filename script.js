@@ -95,7 +95,8 @@ if (menuToggle && controls) {
     });
 }
 
-// Get background color components
+// Initialize background color
+canvas.style.backgroundColor = '#000000';
 let bgColor = getComputedStyle(canvas).backgroundColor;
 let [bgR, bgG, bgB] = bgColor.match(/\d+/g).map(Number);
 
@@ -138,9 +139,9 @@ function generateColor() {
     }
 }
 
-function createParticles(e) {
-    mouse.x = e.x;
-    mouse.y = e.y;
+function createParticles(x, y) {
+    mouse.x = x;
+    mouse.y = y;
     
     for(let i = 0; i < 3; i++) {
         particles.unshift(new Particle(mouse.x, mouse.y, generateColor()));
@@ -148,6 +149,24 @@ function createParticles(e) {
             particles.pop();
         }
     }
+}
+
+function handleTouch(e) {
+    e.preventDefault(); // Prevent scrolling
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    createParticles(
+        touch.clientX - rect.left,
+        touch.clientY - rect.top
+    );
+}
+
+function handleMouse(e) {
+    const rect = canvas.getBoundingClientRect();
+    createParticles(
+        e.clientX - rect.left,
+        e.clientY - rect.top
+    );
 }
 
 function animate() {
