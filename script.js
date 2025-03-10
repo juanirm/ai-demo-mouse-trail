@@ -188,7 +188,11 @@ function updateBgColor(color) {
 
 // Event Listeners
 window.addEventListener('resize', resizeCanvas);
-canvas.addEventListener('mousemove', createParticles);
+canvas.addEventListener('mousemove', handleMouse);
+
+// Touch support
+canvas.addEventListener('touchstart', handleTouch, { passive: false });
+canvas.addEventListener('touchmove', handleTouch, { passive: false });
 
 bgColorPicker.addEventListener('input', (e) => {
     updateBgColor(e.target.value);
