@@ -76,8 +76,19 @@ let hue = 0;
 const menuToggle = document.getElementById('menuToggle');
 const controls = document.querySelector('.controls');
 
-menuToggle.addEventListener('click', () => {
+// Initialize as collapsed
+controls.classList.add('collapsed');
+
+menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent event from reaching the document
     controls.classList.toggle('collapsed');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!controls.contains(e.target) && !menuToggle.contains(e.target)) {
+        controls.classList.add('collapsed');
+    }
 });
 
 // Get background color components
