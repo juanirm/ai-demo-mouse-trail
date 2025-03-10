@@ -9,9 +9,32 @@ body {
     background-color: #000000;
 }
 
-.controls {
+.menu-toggle {
     position: fixed;
     top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.menu-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.controls {
+    position: fixed;
+    top: 70px;
     left: 20px;
     background-color: rgba(0, 0, 0, 0.75);
     padding: 20px;
@@ -23,6 +46,14 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
                 0 1px 3px rgba(0, 0, 0, 0.08);
+    transform-origin: top left;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.controls.collapsed {
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .control-group {

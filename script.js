@@ -72,12 +72,23 @@ let particleSize = 2;
 let mouse = { x: null, y: null };
 let hue = 0;
 
+// Menu toggle functionality
+const menuToggle = document.getElementById('menuToggle');
+const controls = document.querySelector('.controls');
+
+menuToggle.addEventListener('click', () => {
+    controls.classList.toggle('collapsed');
+});
+
 // Get background color components
-let bgColor = getComputedStyle(document.body).backgroundColor;
+let bgColor = getComputedStyle(canvas).backgroundColor;
 let [bgR, bgG, bgB] = bgColor.match(/\d+/g).map(Number);
 
 // Controls
 const trailLength = document.getElementById('trailLength');
+// Set rainbow as default
+const trailType = document.getElementById('trailType');
+trailType.value = 'rainbow';
 const trailLengthValue = document.getElementById('trailLengthValue');
 const trailWidth = document.getElementById('trailWidth');
 const trailWidthValue = document.getElementById('trailWidthValue');
