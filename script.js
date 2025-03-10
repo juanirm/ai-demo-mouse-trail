@@ -144,9 +144,9 @@ function updateColorValue(input, display) {
 }
 
 function updateBgColor(color) {
-    document.body.style.backgroundColor = color;
+    canvas.style.backgroundColor = color;
     // Update the background color components for the fade effect
-    bgColor = getComputedStyle(document.body).backgroundColor;
+    bgColor = getComputedStyle(canvas).backgroundColor;
     [bgR, bgG, bgB] = bgColor.match(/\d+/g).map(Number);
 }
 
