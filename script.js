@@ -64,6 +64,7 @@ class Particle {
     }
 }
 
+// Initialize canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const particles = [];
@@ -76,37 +77,44 @@ let hue = 0;
 const menuToggle = document.getElementById('menuToggle');
 const controls = document.querySelector('.controls');
 
-// Initialize as collapsed
-controls.classList.add('collapsed');
+if (menuToggle && controls) {
+    // Initialize as collapsed
+    controls.classList.add('collapsed');
+    
+    // Toggle menu on button click
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        controls.classList.toggle('collapsed');
+    });
 
-menuToggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent event from reaching the document
-    controls.classList.toggle('collapsed');
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!controls.contains(e.target) && !menuToggle.contains(e.target)) {
-        controls.classList.add('collapsed');
-    }
-});
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!controls.contains(e.target) && !menuToggle.contains(e.target)) {
+            controls.classList.add('collapsed');
+        }
+    });
+}
 
 // Get background color components
 let bgColor = getComputedStyle(canvas).backgroundColor;
 let [bgR, bgG, bgB] = bgColor.match(/\d+/g).map(Number);
 
-// Controls
+// Get control elements
 const trailLength = document.getElementById('trailLength');
-// Set rainbow as default
-const trailType = document.getElementById('trailType');
-trailType.value = 'rainbow';
 const trailLengthValue = document.getElementById('trailLengthValue');
 const trailWidth = document.getElementById('trailWidth');
 const trailWidthValue = document.getElementById('trailWidthValue');
 const bgColorPicker = document.getElementById('bgColorPicker');
+const bgColorValue = document.getElementById('bgColorValue');
 const trailColorPicker = document.getElementById('trailColorPicker');
-const trailType = document.getElementById('trailType');
+const trailColorValue = document.getElementById('trailColorValue');
+const trailTypeSelect = document.getElementById('trailType');
 const neonSwitch = document.getElementById('neonSwitch');
+
+// Set rainbow as default
+if (trailTypeSelect) {
+    trailTypeSelect.value = 'rainbow';
+}
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -114,7 +122,7 @@ function resizeCanvas() {
 }
 
 function generateColor() {
-    switch(trailType.value) {
+    switch(trailTypeSelect.value) {
         case 'solid':
             return trailColorPicker.value;
         case 'rainbow':
@@ -157,18 +165,14 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-// Update color value displays
-const bgColorValue = document.getElementById('bgColorValue');
-const trailColorValue = document.getElementById('trailColorValue');
-
 function updateColorValue(input, display) {
     display.textContent = input.value.toUpperCase();
 }
 
 function updateBgColor(color) {
-    document.body.style.backgroundColor = color;
+    canvas.style.backgroundColor = color;
     // Update the background color components for the fade effect
-    bgColor = getComputedStyle(document.body).backgroundColor;
+    bgColor = getComputedStyle(canvas).backgroundColor;
     [bgR, bgG, bgB] = bgColor.match(/\d+/g).map(Number);
 }
 
